@@ -35,7 +35,6 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
 
       // Display authors if enabled and not empty
       if (options.showAuthors && fileData.frontmatter?.authorList?.length) {
-        console.log(fileData.frontmatter.authorList)
         segments.push(<span>Authored by {fileData.frontmatter.authorList.join(", ")}</span>)
       }
       
