@@ -12,11 +12,15 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  useNewLines: boolean
+  showAuthors: boolean
 }
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
   showComma: true,
+  useNewLines: false,
+  showAuthors: true,
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -29,24 +33,38 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
     if (text) {
       const segments: (string | JSX.Element)[] = []
 
+      // Display authors if enabled and not empty
+      if (options.showAuthors && fileData.frontmatter?.authorList?.length) {
+        console.log(fileData.frontmatter.authorList)
+        segments.push(<span>Authored by {fileData.frontmatter.authorList.join(", ")}</span>)
+      }
+      
       if (fileData.dates) {
         segments.push(<Date date={getDate(cfg, fileData)!} locale={cfg.locale} />)
-      }
-
+      }  
+      
       // Display reading time if enabled
       if (options.showReadingTime) {
         const { minutes, words: _words } = readingTime(text)
         const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
           minutes: Math.ceil(minutes),
-        })
+        })  
         segments.push(<span>{displayedTime}</span>)
-      }
+      }  
 
       return (
-        <p show-comma={options.showComma} class={classNames(displayClass, "content-meta")}>
-          {segments}
+        <p show-comma={options.showComma} className={classNames(displayClass, "content-meta")}>
+          {options.useNewLines
+            ? segments.map((segment, index) => (
+                <span key={index}>
+                  {segment}
+                  <br />
+                </span>
+              ))
+            : segments}
         </p>
-      )
+      );
+      
     } else {
       return null
     }

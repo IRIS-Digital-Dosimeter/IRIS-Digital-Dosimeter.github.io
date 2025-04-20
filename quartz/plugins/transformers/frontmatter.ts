@@ -99,9 +99,11 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             if (cssclasses) data.cssclasses = cssclasses
 
             const socialImage = coalesceAliases(data, ["socialImage", "image", "cover"])
+            if (socialImage) data.socialImage = socialImage
 
             const created = coalesceAliases(data, ["created", "date"])
             if (created) data.created = created
+            
             const modified = coalesceAliases(data, [
               "modified",
               "lastmod",
@@ -109,10 +111,19 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
               "last-modified",
             ])
             if (modified) data.modified = modified
+            
+            const authors = coerceToArray(coalesceAliases(data, [
+              "author", 
+              "authors", 
+              "auth", 
+              "writer",
+              "writers",
+            ]))
+            if (authors) data.authorList = authors
+            
             const published = coalesceAliases(data, ["published", "publishDate", "date"])
             if (published) data.published = published
 
-            if (socialImage) data.socialImage = socialImage
 
             // Remove duplicate slugs
             const uniqueSlugs = [...new Set(allSlugs)]
@@ -137,6 +148,7 @@ declare module "vfile" {
         aliases: string[]
         modified: string
         created: string
+        authorList: string[]
         published: string
         description: string
         socialDescription: string
