@@ -27,26 +27,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#f2d5cf",         // Rosewater
+          lightgray: "#f4b8e4",     // Pink
+          gray: "#c6d0f5",          // Lavender
+          darkgray: "#a6d189",      // Green
+          dark: "#e78284",          // Red
+          secondary: "#ca9ee6",     // Mauve
+          tertiary: "#e5c890",      // Yellow
+          highlight: "rgba(148, 226, 213, 0.15)", // Teal with 15% opacity
+          textHighlight: "#f2d5cf88", // Rosewater with 53% opacity
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#1e1e2e",         // Base
+          lightgray: "#313244",     // Surface0
+          gray: "#45475a",          // Surface1
+          darkgray: "#cdd6f4",      // Text
+          dark: "#cba6f7",          // Lavender
+          secondary: "#f38ba8",     // Red
+          tertiary: "#a6e3a1",      // Green
+          highlight: "rgba(148, 226, 213, 0.15)", // Teal with 15% opacity
+          textHighlight: "#f2d5cf88", // Rosewater with 53% opacity
         },
       },
     },
